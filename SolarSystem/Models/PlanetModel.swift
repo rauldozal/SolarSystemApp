@@ -14,7 +14,7 @@ struct PlanetModel: Codable, Identifiable {
     let englishName: String
     let isPlanet: Bool
     let moons: [Moon]?
-    let semimajorAxis: Int?
+    let semimajorAxis: Int
     let perihelion: Int?
     let aphelion: Int?
     let density: Double?

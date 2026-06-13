@@ -20,8 +20,6 @@ struct ContentView: View {
                 Group {
                     if solarSystem.isLoading {
                         ProgressView("Loading planets...")
-                    } else if solarSystem.hasError {
-                        Text("Unable to load planets.")
                     } else if solarSystem.planets.isEmpty {
                         Text("No planets found.")
                     } else {
@@ -51,6 +49,11 @@ struct ContentView: View {
                 .navigationTitle("Solar System")
                 .task {
                     await solarSystem.fetchPlanets()
+                }
+                .alert(isPresented: $solarSystem.hasError, error: solarSystem.planetError) { _ in
+                    Button("Ok", role: .cancel) {}
+                } message: { error in
+                    Text(error.localizedDescription)
                 }
             }
         }
