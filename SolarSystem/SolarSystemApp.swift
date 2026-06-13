@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SolarSystemApp: App {
+    // @StateObject creates and holds the instance and environment object
+    @StateObject var solarSystem = SolarSystemViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(solarSystem)
         }
     }
 }
